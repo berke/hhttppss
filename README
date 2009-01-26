@@ -1,0 +1,33 @@
+hhttppss, Homebuilt HTTP polling server skeleton
+================================================
+Author: Berke Durak
+License: Placed in the public domain.  No copyright.
+Platform: Linux
+
+History
+=======
+I once wrote this in two days for a job interview.  I didn't take the job, but
+I feel this might be a good start for someone.  As it was sitting on my disk,
+picking up dust, I decided to release it.
+
+Advantages
+==========
+* Event-driven, poll()-based
+
+Limitations
+===========
+* Only GET method
+* *NO ACCESS CONTROL*
+* No keep-alive
+* Files are all opened with mmap
+* No URL decoding
+* No content-negotiation
+* 3 built-in mime-types (HTML, plain text, octet-stream) with a simple
+heuristic for discriminating.
+
+Compilation
+===========
+1) make
+2) ./hhttppss -p port
+3) URLs are of the form http://127.0.0.1:8000/path where /path is the path from
+   the root of the filesystem. (DANGER!)
