@@ -21,7 +21,7 @@ typedef struct {
   int opt_max_write;
 } options;
 
-char *options_usage;
+extern char *options_usage;
 void options_set_defaults(options *opt);
 void options_parse(options *opt, int argc, char **argv, void (*bad_option)(char *msg, ...));
 

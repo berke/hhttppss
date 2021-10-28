@@ -51,6 +51,7 @@ void main_signal_handler(int signal)
 int main(int argc, char **argv)
 {
   options opt;
+  server *sv2;
 
   progname = strrchr (*argv, '/');
   if (progname) progname ++;
@@ -65,13 +66,9 @@ int main(int argc, char **argv)
   while(server_run(sv));
 
   /* Avoiding race conditions with SIGINT */
-  {
-    server *sv2;
-
-    sv2 = sv;
-    sv = 0;
-    server_shutdown(sv2);
-  }
+  sv2 = sv;
+  sv = 0;
+  server_shutdown(sv2);
 
   return 0;
 }

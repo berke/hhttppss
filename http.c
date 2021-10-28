@@ -439,10 +439,8 @@ void http_connection_handler(void *svd, connection *cn, short events)
 /*(*** http_connection_delete */
 void http_connection_delete(void *svd, connection *cn)
 {
-  server *sv;
   http *ht;
 
-  sv = svd;
   ht = cn->cn_data;
 
   http_delete(ht);
