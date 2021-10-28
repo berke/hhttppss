@@ -10,9 +10,9 @@
 #include <getopt.h>
 #include <stdlib.h>
 
-char *options_usage = "[-d][-b <backlog>][-p <port>]";
+char *options_usage = "[-d][-b <backlog>][-p <port>][-D <rootdir>]";
 
-static char *option_string = "b:dp:";
+static char *option_string = "b:dp:D:";
 
 /*(*** options_parse */
 void options_parse(options *opt, int argc, char **argv, void (*bad_option)(char *msg, ...))
@@ -37,6 +37,9 @@ void options_parse(options *opt, int argc, char **argv, void (*bad_option)(char 
         if(x < 1 || x > 65535) bad_option("Port value %d out of range", x);
         opt->opt_port = x;
         break;
+      case 'D': /* root directory */
+	opt->opt_root = optarg;
+	break;
       case '?':
       default:
         bad_option(NULL);
@@ -52,5 +55,6 @@ void options_set_defaults(options *opt)
   opt->opt_port = OPT_DEFAULT_PORT;
   opt->opt_backlog = OPT_DEFAULT_BACKLOG;
   opt->opt_daemonize = OPT_DEFAULT_DAEMONIZE;
+  opt->opt_root = OPT_DEFAULT_ROOT;
 }
 /***)*/

@@ -28,6 +28,7 @@ heuristic for discriminating.
 Compilation
 ===========
 1) make
-2) ./hhttppss -p port
-3) URLs are of the form http://127.0.0.1:8000/path where /path is the path from
-   the root of the filesystem. (DANGER!)
+2) ./hhttppss -p port -D /path/to/webroot
+3) URLs are of the form http://127.0.0.1:8000/file which will cause the file
+   /path/to/webroot/file to be served.  Any slashes in "file" will be replaced
+   by underscores.

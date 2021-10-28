@@ -146,8 +146,30 @@ int http_parse_request_line(http_request_line *rl, char *p, int m)
 /*(*** http_uri_to_filename */
 char *http_uri_to_filename(http *ht, char *uri)
 {
-  /* Unimplemented and dirty. XXX */
-  return strdup(uri);
+  /* A quick-and-dirty solution for safety is to replace all '/' characters
+     with something else... */
+  int i,m,n;
+  char *buf,*p;
+
+  while (*uri == '/') {
+    uri ++;
+  }
+
+  m = strlen(ht->ht_server->sv_root);
+  n = strlen(uri);
+  buf = xmalloc(m + n + 2);
+  strncpy(buf,ht->ht_server->sv_root,m);
+  buf[m] = '/';
+  strncpy(buf + m + 1,uri,n + 1);
+
+  p = buf + m + 1;
+  for(i = 0; i < n; i ++, p ++) {
+    if (*p == '/') {
+      *p = '_';
+    }
+  }
+
+  return buf;
 }
 /***)*/
 /*(*** http_process_header */

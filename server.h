@@ -19,6 +19,7 @@ typedef struct {
   unsigned long long sv_cycles;
   int sv_socket;
   demux *sv_demux;
+  char *sv_root;
 } server;
 
 server *server_start(options *opt);

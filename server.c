@@ -97,6 +97,7 @@ server *server_start(options *opt)
   sv->sv_running = 1;
   sv->sv_interrupting_signal = -1;
   sv->sv_cycles = 0;
+  sv->sv_root = opt->opt_root;
 
   /* Create a demuxer */
   sv->sv_demux = demux_create(sv);
@@ -142,6 +143,7 @@ void server_shutdown(server *sv)
 {
   log_msg(sv->sv_log, LOG_INFO, "Server finishing");
   log_shutdown(sv->sv_log);
+  xfree(sv->sv_root);
   xfree(sv);
 }
 /***)*/

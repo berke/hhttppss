@@ -12,6 +12,7 @@
 #define OPT_DEFAULT_LOG_FILE "hhttppss.log"
 #define OPT_DEFAULT_BACKLOG 256
 #define OPT_DEFAULT_DAEMONIZE 1
+#define OPT_DEFAULT_ROOT "."
 
 typedef struct {
   int opt_port;
@@ -19,6 +20,7 @@ typedef struct {
   int opt_backlog;
   int opt_daemonize;
   int opt_max_write;
+  char *opt_root;
 } options;
 
 extern char *options_usage;
