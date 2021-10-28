@@ -97,7 +97,7 @@ server *server_start(options *opt)
   sv->sv_running = 1;
   sv->sv_interrupting_signal = -1;
   sv->sv_cycles = 0;
-  sv->sv_root = opt->opt_root;
+  sv->sv_root = strdup(opt->opt_root);
 
   /* Create a demuxer */
   sv->sv_demux = demux_create(sv);
